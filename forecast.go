@@ -25,6 +25,12 @@ const (
 	BlockMinutely  Block = "minutely"
 )
 
+// An Extend is what can be extended.
+type Extend string
+
+// ExtendHourly extends the forecast hourly.
+const ExtendHourly = "hourly"
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -33,7 +39,7 @@ type Time struct {
 // A ForecastOptions contains options for a forecast request.
 type ForecastOptions struct {
 	Exclude []Block
-	Extend  string
+	Extend  Extend
 	Lang    string
 	Units   string
 }
@@ -207,7 +213,7 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 			values.Set("exclude", strings.Join(blockStrs, ","))
 		}
 		if options.Extend != "" {
-			values.Set("extend", options.Extend)
+			values.Set("extend", string(options.Extend))
 		}
 		if options.Lang != "" {
 			values.Set("lang", options.Lang)

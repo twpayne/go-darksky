@@ -61,7 +61,7 @@ func TestClientForecastOptions(t *testing.T) {
 			BlockHourly,
 			BlockMinutely,
 		},
-		Extend: "hourly",
+		Extend: ExtendHourly,
 		Lang:   "ar",
 		Units:  "si",
 	}
