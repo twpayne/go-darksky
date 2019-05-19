@@ -91,6 +91,18 @@ const (
 	LangZHTW      Lang = "zh-tw"       // traditional ChineLang
 )
 
+// A Units is a system of units.
+type Units string
+
+// Units.
+const (
+	UnitsAuto Units = "auto"
+	UnitsCA   Units = "ca"
+	UnitsSI   Units = "si"
+	UnitsUK2  Units = "uk2"
+	UnitsUS   Units = "us"
+)
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -101,7 +113,7 @@ type ForecastOptions struct {
 	Exclude []Block
 	Extend  Extend
 	Lang    Lang
-	Units   string
+	Units   Units
 }
 
 // An Alert is an alert.
@@ -193,7 +205,7 @@ type Flags struct {
 	DarkSkyUnavailable interface{} `json:"darksky-unavailable,omitempty"`
 	NearestStation     float64     `json:"nearest-station,omitempty"`
 	Sources            []string    `json:"sources,omitempty"`
-	Units              string      `json:"units,omitempty"`
+	Units              Units       `json:"units,omitempty"`
 }
 
 // HourlyData are hourly forecast data.
@@ -279,7 +291,7 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 			values.Set("lang", string(options.Lang))
 		}
 		if options.Units != "" {
-			values.Set("units", options.Units)
+			values.Set("units", string(options.Units))
 		}
 		urlStr += "?" + values.Encode()
 	}

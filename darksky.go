@@ -19,6 +19,9 @@ const (
 
 	// DefaultLang is the default lang.
 	DefaultLang = LangEN
+
+	// DefaultUnits are the default units.
+	DefaultUnits = UnitsUS
 )
 
 // An Error is an error.

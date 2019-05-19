@@ -19,7 +19,7 @@ func TestClientForecast(t *testing.T) {
 	assert.Equal(t, 42.3601, forecast.Latitude)
 	assert.Equal(t, -71.0589, forecast.Longitude)
 	assert.Equal(t, "America/New_York", forecast.Timezone)
-	assert.Equal(t, "us", forecast.Flags.Units)
+	assert.Equal(t, DefaultUnits, forecast.Flags.Units)
 	assert.True(t, time.Since(forecast.Currently.Time.Time) < 10*time.Second)
 }
 
@@ -63,14 +63,14 @@ func TestClientForecastOptions(t *testing.T) {
 		},
 		Extend: ExtendHourly,
 		Lang:   LangAR,
-		Units:  "si",
+		Units:  UnitsSI,
 	}
 	forecast, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, options)
 	require.NoError(t, err)
 	assert.Equal(t, 42.3601, forecast.Latitude)
 	assert.Equal(t, -71.0589, forecast.Longitude)
 	assert.Equal(t, "America/New_York", forecast.Timezone)
-	assert.Equal(t, "si", forecast.Flags.Units)
+	assert.Equal(t, UnitsSI, forecast.Flags.Units)
 	assert.Nil(t, forecast.Alerts)
 	assert.Nil(t, forecast.Currently)
 	assert.Nil(t, forecast.Daily)
@@ -86,7 +86,7 @@ func TestClientTimeMachine(t *testing.T) {
 	assert.Equal(t, 42.3601, forecast.Latitude)
 	assert.Equal(t, -71.0589, forecast.Longitude)
 	assert.Equal(t, "America/New_York", forecast.Timezone)
-	assert.Equal(t, "us", forecast.Flags.Units)
+	assert.Equal(t, UnitsUS, forecast.Flags.Units)
 	assert.Equal(t, darkSkyTime.Time, forecast.Currently.Time.Time.UTC())
 	assert.Nil(t, forecast.Minutely)
 	assert.Equal(t, 24, len(forecast.Hourly.Data))
