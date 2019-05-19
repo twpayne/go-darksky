@@ -1,5 +1,5 @@
-// Package darksky implements a client for the Dark Sky API. See
-// https://darksky.net/dev.
+// Package darksky implements a client for the Dark Sky weather forecasting API.
+// See https://darksky.net/dev.
 package darksky
 
 import (
