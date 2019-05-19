@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-// A Time is a time that marshals to a UNIX timestamp.
+// A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
 }
@@ -25,7 +25,7 @@ type ForecastOptions struct {
 	Units   string
 }
 
-// A Alert is a forecast alert.
+// An Alert is an alert.
 type Alert struct {
 	Description int64    `json:"description,omitempty"`
 	Expires     int64    `json:"expires,omitempty"`
@@ -36,7 +36,7 @@ type Alert struct {
 	URI         string   `json:"uri,omitempty"`
 }
 
-// A Currently is the current observation.
+// A Currently is a current observation.
 type Currently struct {
 	ApparentTemperature  float64 `json:"apparentTemperature,omitempty"`
 	CloudCover           float64 `json:"cloudCover,omitempty"`
@@ -59,7 +59,7 @@ type Currently struct {
 	WindSpeed            float64 `json:"windSpeed,omitempty"`
 }
 
-// A DailyData is daily forecast data.
+// DailyData are daily forecast data.
 type DailyData struct {
 	ApparentTemperatureHigh     float64 `json:"apparentTemperatureHigh,omitempty"`
 	ApparentTemperatureHighTime *Time   `json:"apparentTemperatureHighTime,omitempty"`
@@ -117,7 +117,7 @@ type Flags struct {
 	Units              string      `json:"units,omitempty"`
 }
 
-// HourlyData is hourly forecast data.
+// HourlyData are hourly forecast data.
 type HourlyData struct {
 	ApparentTemperature float64 `json:"apparentTemperature,omitempty"`
 	CloudCover          float64 `json:"cloudCover,omitempty"`
@@ -139,14 +139,14 @@ type HourlyData struct {
 	WindSpeed           float64 `json:"windSpeed,omitempty"`
 }
 
-// A Hourly is an hourly forecast.
+// An Hourly is an hourly forecast.
 type Hourly struct {
 	Data    []*HourlyData `json:"data,omitempty"`
 	Icon    string        `json:"icon,omitempty"`
 	Summary string        `json:"summary,omitempty"`
 }
 
-// A MinutelyData is minutely forecast data.
+// MinutelyData are minutely forecast data.
 type MinutelyData struct {
 	PrecipIntensity      float64 `json:"precipIntensity,omitempty"`
 	PrecipIntensityError float64 `json:"precipIntensityError,omitempty"`
@@ -162,7 +162,7 @@ type Minutely struct {
 	Summary string          `json:"summary,omitempty"`
 }
 
-// A Forecast is a forecast response.
+// A Forecast is a forecast.
 type Forecast struct {
 	Alerts    []*Alert   `json:"alerts,omitempty"`
 	Currently *Currently `json:"currently,omitempty"`
