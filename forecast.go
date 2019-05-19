@@ -12,6 +12,19 @@ import (
 	"time"
 )
 
+// A Block is a data block in a response.
+type Block string
+
+// Blocks.
+const (
+	BlockAlerts    Block = "alerts"
+	BlockCurrently Block = "currently"
+	BlockDaily     Block = "daily"
+	BlockFlags     Block = "flags"
+	BlockHourly    Block = "hourly"
+	BlockMinutely  Block = "minutely"
+)
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -19,7 +32,7 @@ type Time struct {
 
 // A ForecastOptions contains options for a forecast request.
 type ForecastOptions struct {
-	Exclude []string
+	Exclude []Block
 	Extend  string
 	Lang    string
 	Units   string
@@ -187,7 +200,11 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 	if options != nil {
 		values := url.Values{}
 		if len(options.Exclude) != 0 {
-			values.Set("exclude", strings.Join(options.Exclude, ","))
+			blockStrs := make([]string, len(options.Exclude))
+			for i, block := range options.Exclude {
+				blockStrs[i] = string(block)
+			}
+			values.Set("exclude", strings.Join(blockStrs, ","))
 		}
 		if options.Extend != "" {
 			values.Set("extend", options.Extend)

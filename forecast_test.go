@@ -54,10 +54,16 @@ func TestClientInternalServerError(t *testing.T) {
 func TestClientForecastOptions(t *testing.T) {
 	c := mustNewTestClient(t)
 	options := &ForecastOptions{
-		Exclude: []string{"currently", "minutely", "hourly", "daily", "alerts"},
-		Extend:  "hourly",
-		Lang:    "ar",
-		Units:   "si",
+		Exclude: []Block{
+			BlockAlerts,
+			BlockCurrently,
+			BlockDaily,
+			BlockHourly,
+			BlockMinutely,
+		},
+		Extend: "hourly",
+		Lang:   "ar",
+		Units:  "si",
 	}
 	forecast, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, options)
 	require.NoError(t, err)
