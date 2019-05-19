@@ -12,6 +12,97 @@ import (
 	"time"
 )
 
+// A Block is a data block in a response.
+type Block string
+
+// Blocks.
+const (
+	BlockAlerts    Block = "alerts"
+	BlockCurrently Block = "currently"
+	BlockDaily     Block = "daily"
+	BlockFlags     Block = "flags"
+	BlockHourly    Block = "hourly"
+	BlockMinutely  Block = "minutely"
+)
+
+// An Extend is what can be extended.
+type Extend string
+
+// ExtendHourly extends the forecast hourly.
+const ExtendHourly = "hourly"
+
+// A Lang is a language.
+type Lang string
+
+// Langs.
+const (
+	LangAR        Lang = "ar"          // Arabic
+	LangAZ        Lang = "az"          // Azerbaijani
+	LangBE        Lang = "be"          // Belarusian
+	LangBG        Lang = "bg"          // Bulgarian
+	LangBN        Lang = "bn"          // Bengali
+	LangBS        Lang = "bs"          // Bosnian
+	LangCA        Lang = "ca"          // Catalan
+	LangCS        Lang = "cs"          // Czech
+	LangDA        Lang = "da"          // Danish
+	LangDE        Lang = "de"          // German
+	LangEL        Lang = "el"          // Greek
+	LangEN        Lang = "en"          // English (which is the default)
+	LangEO        Lang = "eo"          // Esperanto
+	LangES        Lang = "es"          // Spanish
+	LangET        Lang = "et"          // Estonian
+	LangFI        Lang = "fi"          // Finnish
+	LangFR        Lang = "fr"          // French
+	LangHE        Lang = "he"          // Hebrew
+	LangHI        Lang = "hi"          // Hindi
+	LangHR        Lang = "hr"          // Croatian
+	LangHU        Lang = "hu"          // Hungarian
+	LangID        Lang = "id"          // Indonesian
+	LangIS        Lang = "is"          // Icelandic
+	LangIT        Lang = "it"          // Italian
+	LangJA        Lang = "ja"          // Japanese
+	LangKA        Lang = "ka"          // Georgian
+	LangKN        Lang = "kn"          // Kannada
+	LangKO        Lang = "ko"          // Korean
+	LangKW        Lang = "kw"          // Cornish
+	LangLV        Lang = "lv"          // Latvian
+	LangML        Lang = "ml"          // Malayam
+	LangMR        Lang = "mr"          // Marathi
+	LangNB        Lang = "nb"          // Norwegian Bokmål
+	LangNL        Lang = "nl"          // Dutch
+	LangNO        Lang = "no"          // Norwegian Bokmål (alias for nb)
+	LangPA        Lang = "pa"          // Punjabi
+	LangPL        Lang = "pl"          // Polish
+	LangPT        Lang = "pt"          // Portuguese
+	LangRO        Lang = "ro"          // Romanian
+	LangRU        Lang = "ru"          // Russian
+	LangSK        Lang = "sk"          // Slovak
+	LangSL        Lang = "sl"          // Slovenian
+	LangSR        Lang = "sr"          // Serbian
+	LangSV        Lang = "sv"          // Swedish
+	LangTA        Lang = "ta"          // Tamil
+	LangTE        Lang = "te"          // Telugu
+	LangTET       Lang = "tet"         // Tetum
+	LangTR        Lang = "tr"          // Turkish
+	LangUK        Lang = "uk"          // Ukrainian
+	LangUR        Lang = "ur"          // Urdu
+	LangXPigLatin Lang = "x-pig-latin" // Igpay Atinlay
+	LangZH        Lang = "zh"          // simplified Chinese
+	LangZHTW      Lang = "zh-tw"       // traditional ChineLang
+)
+
+// A Units is a system of units.
+type Units string
+
+// Units.
+const (
+	UnitsAuto Units = "auto"
+	UnitsCA   Units = "ca"
+	UnitsSI   Units = "si"
+	UnitsUK2  Units = "uk2"
+	UnitsUS   Units = "us"
+)
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -19,10 +110,10 @@ type Time struct {
 
 // A ForecastOptions contains options for a forecast request.
 type ForecastOptions struct {
-	Exclude []string
-	Extend  string
-	Lang    string
-	Units   string
+	Exclude []Block
+	Extend  Extend
+	Lang    Lang
+	Units   Units
 }
 
 // An Alert is an alert.
@@ -52,7 +143,7 @@ type Currently struct {
 	Summary              string  `json:"summary,omitempty"`
 	Temperature          float64 `json:"temperature,omitempty"`
 	Time                 *Time   `json:"time,omitempty"`
-	UvIndex              float64 `json:"uvIndex,omitempty"`
+	UVIndex              float64 `json:"uvIndex,omitempty"`
 	Visibility           float64 `json:"visibility,omitempty"`
 	WindBearing          float64 `json:"windBearing,omitempty"`
 	WindGust             float64 `json:"windGust,omitempty"`
@@ -93,8 +184,8 @@ type DailyData struct {
 	TemperatureMin              float64 `json:"temperatureMin,omitempty"`
 	TemperatureMinTime          *Time   `json:"temperatureMinTime,omitempty"`
 	Time                        *Time   `json:"time,omitempty"`
-	UvIndex                     float64 `json:"uvIndex,omitempty"`
-	UvIndexTime                 *Time   `json:"uvIndexTime,omitempty"`
+	UVIndex                     float64 `json:"uvIndex,omitempty"`
+	UVIndexTime                 *Time   `json:"uvIndexTime,omitempty"`
 	Visibility                  float64 `json:"visibility,omitempty"`
 	WindBearing                 float64 `json:"windBearing,omitempty"`
 	WindGust                    float64 `json:"windGust,omitempty"`
@@ -114,7 +205,7 @@ type Flags struct {
 	DarkSkyUnavailable interface{} `json:"darksky-unavailable,omitempty"`
 	NearestStation     float64     `json:"nearest-station,omitempty"`
 	Sources            []string    `json:"sources,omitempty"`
-	Units              string      `json:"units,omitempty"`
+	Units              Units       `json:"units,omitempty"`
 }
 
 // HourlyData are hourly forecast data.
@@ -132,7 +223,7 @@ type HourlyData struct {
 	Summary             string  `json:"summary,omitempty"`
 	Temperature         float64 `json:"temperature,omitempty"`
 	Time                *Time   `json:"time,omitempty"`
-	UvIndex             float64 `json:"uvIndex,omitempty"`
+	UVIndex             float64 `json:"uvIndex,omitempty"`
 	Visibility          float64 `json:"visibility,omitempty"`
 	WindBearing         float64 `json:"windBearing,omitempty"`
 	WindGust            float64 `json:"windGust,omitempty"`
@@ -187,16 +278,20 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 	if options != nil {
 		values := url.Values{}
 		if len(options.Exclude) != 0 {
-			values.Set("exclude", strings.Join(options.Exclude, ","))
+			blockStrs := make([]string, len(options.Exclude))
+			for i, block := range options.Exclude {
+				blockStrs[i] = string(block)
+			}
+			values.Set("exclude", strings.Join(blockStrs, ","))
 		}
 		if options.Extend != "" {
-			values.Set("extend", options.Extend)
+			values.Set("extend", string(options.Extend))
 		}
 		if options.Lang != "" {
-			values.Set("lang", options.Lang)
+			values.Set("lang", string(options.Lang))
 		}
 		if options.Units != "" {
-			values.Set("units", options.Units)
+			values.Set("units", string(options.Units))
 		}
 		urlStr += "?" + values.Encode()
 	}
