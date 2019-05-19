@@ -28,8 +28,10 @@ const (
 // An Extend is what can be extended.
 type Extend string
 
-// ExtendHourly extends the forecast hourly.
-const ExtendHourly = "hourly"
+// Extends.
+const (
+	ExtendHourly Extend = "hourly"
+)
 
 // A Lang is a language.
 type Lang string
