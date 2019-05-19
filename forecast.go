@@ -143,7 +143,7 @@ type Currently struct {
 	Summary              string  `json:"summary,omitempty"`
 	Temperature          float64 `json:"temperature,omitempty"`
 	Time                 *Time   `json:"time,omitempty"`
-	UvIndex              float64 `json:"uvIndex,omitempty"`
+	UVIndex              float64 `json:"uvIndex,omitempty"`
 	Visibility           float64 `json:"visibility,omitempty"`
 	WindBearing          float64 `json:"windBearing,omitempty"`
 	WindGust             float64 `json:"windGust,omitempty"`
@@ -184,8 +184,8 @@ type DailyData struct {
 	TemperatureMin              float64 `json:"temperatureMin,omitempty"`
 	TemperatureMinTime          *Time   `json:"temperatureMinTime,omitempty"`
 	Time                        *Time   `json:"time,omitempty"`
-	UvIndex                     float64 `json:"uvIndex,omitempty"`
-	UvIndexTime                 *Time   `json:"uvIndexTime,omitempty"`
+	UVIndex                     float64 `json:"uvIndex,omitempty"`
+	UVIndexTime                 *Time   `json:"uvIndexTime,omitempty"`
 	Visibility                  float64 `json:"visibility,omitempty"`
 	WindBearing                 float64 `json:"windBearing,omitempty"`
 	WindGust                    float64 `json:"windGust,omitempty"`
@@ -223,7 +223,7 @@ type HourlyData struct {
 	Summary             string  `json:"summary,omitempty"`
 	Temperature         float64 `json:"temperature,omitempty"`
 	Time                *Time   `json:"time,omitempty"`
-	UvIndex             float64 `json:"uvIndex,omitempty"`
+	UVIndex             float64 `json:"uvIndex,omitempty"`
 	Visibility          float64 `json:"visibility,omitempty"`
 	WindBearing         float64 `json:"windBearing,omitempty"`
 	WindGust            float64 `json:"windGust,omitempty"`
