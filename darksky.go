@@ -5,6 +5,7 @@ package darksky
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 const (
@@ -35,11 +36,22 @@ type Error struct {
 	}
 }
 
+// ResponseMetadata are extra metadata associated with a response.
+type ResponseMetadata struct {
+	StatusCode       int
+	ForecastAPICalls int
+	ResponseTime     time.Duration
+}
+
+// A ResponseMetadataCallback is function that receives a ResponseMetadata.
+type ResponseMetadataCallback func(*ResponseMetadata)
+
 // A Client is a Dark Sky Client.
 type Client struct {
-	httpClient *http.Client
-	baseURL    string
-	key        string
+	httpClient               *http.Client
+	baseURL                  string
+	key                      string
+	responseMetadataCallback ResponseMetadataCallback
 }
 
 // A ClientOption sets an option on a Client.
@@ -63,6 +75,13 @@ func WithBaseURL(baseURL string) ClientOption {
 func WithKey(key string) ClientOption {
 	return func(c *Client) {
 		c.key = key
+	}
+}
+
+// WithResponseMetadataCallback sets the response metadata callback.
+func WithResponseMetadataCallback(rmc ResponseMetadataCallback) ClientOption {
+	return func(c *Client) {
+		c.responseMetadataCallback = rmc
 	}
 }
 
