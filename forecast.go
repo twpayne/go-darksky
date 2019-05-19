@@ -267,14 +267,15 @@ type Forecast struct {
 	Timezone  string     `json:"timezone,omitempty"`
 }
 
-// Forecast returns the forecast for latitude and longitude at time. If time is
-// nil or zero then a forecast request is sent. If time is non-nil and non-zero
+// Forecast returns the forecast for latitude and longitude at time t. If t is
+// nil or zero then a forecast request is sent. If t is non-nil and non-zero
 // then a time machine request is sent.
-func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time *Time, options *ForecastOptions) (*Forecast, error) {
+func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, t *Time, options *ForecastOptions) (*Forecast, error) {
 	urlStr := fmt.Sprintf("%s/forecast/%s/%f,%f", c.baseURL, c.key, latitude, longitude)
-	if time != nil && !time.IsZero() {
-		urlStr += "," + strconv.FormatInt(time.Unix(), 10)
+	if t != nil && !t.IsZero() {
+		urlStr += "," + strconv.FormatInt(t.Unix(), 10)
 	}
+
 	if options != nil {
 		values := url.Values{}
 		if len(options.Exclude) != 0 {
@@ -295,6 +296,7 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 		}
 		urlStr += "?" + values.Encode()
 	}
+
 	req, err := http.NewRequest(http.MethodGet, urlStr, nil)
 	if err != nil {
 		return nil, err
@@ -306,6 +308,27 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 		return nil, err
 	}
 	defer resp.Body.Close()
+
+	if c.responseMetadataCallback != nil {
+		var forecastAPICalls int
+		if facStr := resp.Header.Get("X-Forecast-API-Calls"); facStr != "" {
+			if fac, err := strconv.ParseInt(facStr, 10, 64); err == nil {
+				forecastAPICalls = int(fac)
+			}
+		}
+		var responseTime time.Duration
+		if rtStr := resp.Header.Get("X-Response-Time"); rtStr != "" {
+			if rt, err := time.ParseDuration(rtStr); err == nil {
+				responseTime = rt
+			}
+		}
+		c.responseMetadataCallback(&ResponseMetadata{
+			StatusCode:       resp.StatusCode,
+			ForecastAPICalls: forecastAPICalls,
+			ResponseTime:     responseTime,
+		})
+	}
+
 	if resp.StatusCode < http.StatusOK || http.StatusMultipleChoices <= resp.StatusCode {
 		respBody, err := ioutil.ReadAll(resp.Body)
 		e := &Error{
@@ -318,6 +341,7 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 		}
 		return nil, e
 	}
+
 	respValue := &Forecast{}
 	return respValue, json.NewDecoder(resp.Body).Decode(respValue)
 }

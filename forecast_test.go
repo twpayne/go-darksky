@@ -94,12 +94,25 @@ func TestClientTimeMachine(t *testing.T) {
 	assert.Nil(t, forecast.Alerts)
 }
 
-func mustNewTestClient(t *testing.T) *Client {
+func TestClientMetadatacallback(t *testing.T) {
+	var lastResponseMetadata *ResponseMetadata
+	c := mustNewTestClient(t,
+		WithResponseMetadataCallback(func(rm *ResponseMetadata) {
+			lastResponseMetadata = rm
+		}),
+	)
+	_, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
+	require.NoError(t, err)
+	require.NotNil(t, lastResponseMetadata)
+	assert.Equal(t, http.StatusOK, lastResponseMetadata.StatusCode)
+	assert.True(t, lastResponseMetadata.ForecastAPICalls > 0)
+	assert.True(t, lastResponseMetadata.ResponseTime > 0)
+}
+
+func mustNewTestClient(t *testing.T, options ...ClientOption) *Client {
 	key := os.Getenv("DARKSKY_KEY")
 	if key == "" {
 		t.Fatal("DARKSKY_KEY environment variable not set")
 	}
-	return NewClient(
-		WithKey(key),
-	)
+	return NewClient(append([]ClientOption{WithKey(key)}, options...)...)
 }

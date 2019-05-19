@@ -12,6 +12,7 @@ API](https://darksky.net/dev).
 * Support for all Dark Sky API functionality.
 * Idomatic Go API, including support for `context` and Go modules.
 * Fully tested, including error conditions.
+* Monitoring hooks.
 
 ## Why a new Go Dark Sky client library?
 
@@ -24,6 +25,7 @@ Go library provides all of the following:
 * Support for [`context`](https://golang.org/pkg/context/).
 * Support for Go modules.
 * Rich handling of errors, including both bad requests generic HTTP errors.
+* Monitoring hooks.
 
 Adding any of these to an exising Go Dark Sky client library would break API
 compatibilty, hence the new client library.
