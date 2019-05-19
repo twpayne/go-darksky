@@ -18,11 +18,15 @@ const (
 	DefaultBaseURL = "https://api.darksky.net"
 )
 
-// A ClientError is an error returned by a Client.
-type ClientError struct {
-	Request      *http.Request
-	Response     *http.Response
-	ResponseBody []byte
+// An Error is an error..
+type Error struct {
+	Request      *http.Request  `json:"-"`
+	Response     *http.Response `json:"-"`
+	ResponseBody []byte         `json:"-"`
+	Details      struct {
+		Code     int    `json:"code"`
+		ErrorStr string `json:"error"`
+	}
 }
 
 // A Client is a Dark Sky Client.
@@ -68,7 +72,10 @@ func NewClient(options ...ClientOption) *Client {
 	return c
 }
 
-func (e *ClientError) Error() string {
+func (e *Error) Error() string {
+	if e.Details.ErrorStr != "" {
+		return e.Details.ErrorStr
+	}
 	s := fmt.Sprintf("%s: %d %s", e.Request.URL, e.Response.StatusCode, http.StatusText(e.Response.StatusCode))
 	if len(e.ResponseBody) != 0 {
 		s += ": " + string(e.ResponseBody)

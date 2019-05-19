@@ -212,12 +212,16 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode < http.StatusOK || http.StatusMultipleChoices <= resp.StatusCode {
-		respBody, _ := ioutil.ReadAll(resp.Body)
-		return nil, &ClientError{
+		respBody, err := ioutil.ReadAll(resp.Body)
+		e := &Error{
 			Request:      req,
 			Response:     resp,
 			ResponseBody: respBody,
 		}
+		if err == nil {
+			_ = json.Unmarshal(respBody, &e.Details)
+		}
+		return nil, e
 	}
 	respValue := &Forecast{}
 	return respValue, json.NewDecoder(resp.Body).Decode(respValue)
