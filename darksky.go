@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	// Attribution is the attribution that mst be displayed.
+	// Attribution is the attribution that must be displayed.
 	Attribution = "Powered by Dark Sky"
 
 	// AttributionURL is the URL that the displayed attribution must link to.
@@ -18,7 +18,7 @@ const (
 	DefaultBaseURL = "https://api.darksky.net"
 )
 
-// An Error is an error..
+// An Error is an error.
 type Error struct {
 	Request      *http.Request  `json:"-"`
 	Response     *http.Response `json:"-"`
