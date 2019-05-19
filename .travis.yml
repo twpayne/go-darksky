@@ -9,10 +9,13 @@ env:
 
 install:
   - make install-tools
+  - GO111MODULE=off go get github.com/mattn/goveralls
 
 script:
   - make format
   - git diff --exit-code
   - make lint test
+  - make coverage.out
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN; fi
 
 sudo: false

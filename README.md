@@ -2,6 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/twpayne/go-darksky?status.svg)](https://godoc.org/github.com/twpayne/go-darksky)
 [![Build Status](https://travis-ci.org/twpayne/go-darksky.svg?branch=master)](https://travis-ci.org/twpayne/go-darksky)
+[![Coverage Status](https://coveralls.io/repos/github/twpayne/go-darksky/badge.svg)](https://coveralls.io/github/twpayne/go-darksky)
 
 Package `darksky` implements a client for the [Dark Sky weather forecasting
 API](https://darksky.net/dev).
