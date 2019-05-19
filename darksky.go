@@ -16,6 +16,9 @@ const (
 
 	// DefaultBaseURL is the default base URL.
 	DefaultBaseURL = "https://api.darksky.net"
+
+	// DefaultLang is the default lang.
+	DefaultLang = LangEN
 )
 
 // An Error is an error.

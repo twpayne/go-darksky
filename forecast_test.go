@@ -62,7 +62,7 @@ func TestClientForecastOptions(t *testing.T) {
 			BlockMinutely,
 		},
 		Extend: ExtendHourly,
-		Lang:   "ar",
+		Lang:   LangAR,
 		Units:  "si",
 	}
 	forecast, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, options)

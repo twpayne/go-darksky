@@ -31,6 +31,66 @@ type Extend string
 // ExtendHourly extends the forecast hourly.
 const ExtendHourly = "hourly"
 
+// A Lang is a language.
+type Lang string
+
+// Langs.
+const (
+	LangAR        Lang = "ar"          // Arabic
+	LangAZ        Lang = "az"          // Azerbaijani
+	LangBE        Lang = "be"          // Belarusian
+	LangBG        Lang = "bg"          // Bulgarian
+	LangBN        Lang = "bn"          // Bengali
+	LangBS        Lang = "bs"          // Bosnian
+	LangCA        Lang = "ca"          // Catalan
+	LangCS        Lang = "cs"          // Czech
+	LangDA        Lang = "da"          // Danish
+	LangDE        Lang = "de"          // German
+	LangEL        Lang = "el"          // Greek
+	LangEN        Lang = "en"          // English (which is the default)
+	LangEO        Lang = "eo"          // Esperanto
+	LangES        Lang = "es"          // Spanish
+	LangET        Lang = "et"          // Estonian
+	LangFI        Lang = "fi"          // Finnish
+	LangFR        Lang = "fr"          // French
+	LangHE        Lang = "he"          // Hebrew
+	LangHI        Lang = "hi"          // Hindi
+	LangHR        Lang = "hr"          // Croatian
+	LangHU        Lang = "hu"          // Hungarian
+	LangID        Lang = "id"          // Indonesian
+	LangIS        Lang = "is"          // Icelandic
+	LangIT        Lang = "it"          // Italian
+	LangJA        Lang = "ja"          // Japanese
+	LangKA        Lang = "ka"          // Georgian
+	LangKN        Lang = "kn"          // Kannada
+	LangKO        Lang = "ko"          // Korean
+	LangKW        Lang = "kw"          // Cornish
+	LangLV        Lang = "lv"          // Latvian
+	LangML        Lang = "ml"          // Malayam
+	LangMR        Lang = "mr"          // Marathi
+	LangNB        Lang = "nb"          // Norwegian Bokmål
+	LangNL        Lang = "nl"          // Dutch
+	LangNO        Lang = "no"          // Norwegian Bokmål (alias for nb)
+	LangPA        Lang = "pa"          // Punjabi
+	LangPL        Lang = "pl"          // Polish
+	LangPT        Lang = "pt"          // Portuguese
+	LangRO        Lang = "ro"          // Romanian
+	LangRU        Lang = "ru"          // Russian
+	LangSK        Lang = "sk"          // Slovak
+	LangSL        Lang = "sl"          // Slovenian
+	LangSR        Lang = "sr"          // Serbian
+	LangSV        Lang = "sv"          // Swedish
+	LangTA        Lang = "ta"          // Tamil
+	LangTE        Lang = "te"          // Telugu
+	LangTET       Lang = "tet"         // Tetum
+	LangTR        Lang = "tr"          // Turkish
+	LangUK        Lang = "uk"          // Ukrainian
+	LangUR        Lang = "ur"          // Urdu
+	LangXPigLatin Lang = "x-pig-latin" // Igpay Atinlay
+	LangZH        Lang = "zh"          // simplified Chinese
+	LangZHTW      Lang = "zh-tw"       // traditional ChineLang
+)
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -40,7 +100,7 @@ type Time struct {
 type ForecastOptions struct {
 	Exclude []Block
 	Extend  Extend
-	Lang    string
+	Lang    Lang
 	Units   string
 }
 
@@ -216,7 +276,7 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, time
 			values.Set("extend", string(options.Extend))
 		}
 		if options.Lang != "" {
-			values.Set("lang", options.Lang)
+			values.Set("lang", string(options.Lang))
 		}
 		if options.Units != "" {
 			values.Set("units", options.Units)
