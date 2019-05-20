@@ -80,7 +80,9 @@ func TestClientForecastOptions(t *testing.T) {
 
 func TestClientTimeMachine(t *testing.T) {
 	c := mustNewTestClient(t)
-	darkSkyTime := Time{Time: time.Date(2019, 1, 1, 0, 0, 0, 0, time.UTC)}
+	darkSkyTime := Time{
+		Time: time.Date(2019, 1, 1, 0, 0, 0, 0, time.UTC),
+	}
 	forecast, err := c.Forecast(context.Background(), 42.3601, -71.0589, &darkSkyTime, nil)
 	require.NoError(t, err)
 	assert.Equal(t, 42.3601, forecast.Latitude)

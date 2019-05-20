@@ -14,6 +14,27 @@ API](https://darksky.net/dev).
 * Fully tested, including error conditions.
 * Monitoring hooks.
 
+## Example
+
+```go
+func ExampleClient_Forecast() {
+	c := darksky.NewClient(
+		darksky.WithKey(os.Getenv("DARKSKY_KEY")),
+	)
+
+	ctx := context.Background()
+	forecast, err := c.Forecast(ctx, 42.3601, -71.0589, nil, &darksky.ForecastOptions{
+		Units: darksky.UnitsSI,
+	})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	_ = forecast
+}
+```
+
 ## Why a new Go Dark Sky client library?
 
 There are [several existing Dark Sky client
