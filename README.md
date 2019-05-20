@@ -31,13 +31,17 @@ func ExampleClient_Forecast() {
 		return
 	}
 
-	_ = forecast
+	// The forecast varies from day to day. Print something stable.
+	fmt.Println(forecast.Timezone)
+
+	// Output:
+	// America/New_York
 }
 ```
 
 ## Why a new Go Dark Sky client library?
 
-There are [several existing Dark Sky client
+There are several [existing Dark Sky client
 libraries](https://darksky.net/dev/docs/libraries). Compared to these, no other
 Go library provides all of the following:
 

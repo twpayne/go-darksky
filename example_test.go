@@ -49,7 +49,11 @@ func ExampleClient_Forecast_minimal() {
 		return
 	}
 
-	_ = forecast
+	// The forecast varies from day to day. Print something stable.
+	fmt.Println(forecast.Timezone)
+
+	// Output:
+	// America/New_York
 }
 
 func ExampleClient_Forecast_timeMachine() {
