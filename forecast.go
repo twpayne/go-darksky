@@ -118,153 +118,153 @@ type ForecastOptions struct {
 
 // An Alert is an alert.
 type Alert struct {
-	Description int64    `json:"description,omitempty"`
-	Expires     int64    `json:"expires,omitempty"`
-	Regions     []string `json:"regions,omitempty"`
+	Description int64    `json:"description"`
+	Expires     int64    `json:"expires"`
+	Regions     []string `json:"regions"`
 	Severity    string   `json:"severity"`
-	Time        *Time    `json:"time,omitempty"`
-	Title       string   `json:"title,omitempty"`
-	URI         string   `json:"uri,omitempty"`
+	Time        *Time    `json:"time"`
+	Title       string   `json:"title"`
+	URI         string   `json:"uri"`
 }
 
 // A Currently is a current observation.
 type Currently struct {
-	ApparentTemperature  float64 `json:"apparentTemperature,omitempty"`
-	CloudCover           float64 `json:"cloudCover,omitempty"`
-	DewPoint             float64 `json:"dewPoint,omitempty"`
-	Humidity             float64 `json:"humidity,omitempty"`
-	Icon                 string  `json:"icon,omitempty"`
-	NearestStormBearing  float64 `json:"nearestStormBearing,omitempty"`
-	NearestStormDistance float64 `json:"nearestStormDistance,omitempty"`
-	Ozone                float64 `json:"ozone,omitempty"`
-	PrecipIntensity      float64 `json:"precipIntensity,omitempty"`
-	PrecipProbability    float64 `json:"precipProbability,omitempty"`
-	Pressure             float64 `json:"pressure,omitempty"`
-	Summary              string  `json:"summary,omitempty"`
-	Temperature          float64 `json:"temperature,omitempty"`
-	Time                 *Time   `json:"time,omitempty"`
-	UVIndex              float64 `json:"uvIndex,omitempty"`
-	Visibility           float64 `json:"visibility,omitempty"`
-	WindBearing          float64 `json:"windBearing,omitempty"`
-	WindGust             float64 `json:"windGust,omitempty"`
-	WindSpeed            float64 `json:"windSpeed,omitempty"`
+	ApparentTemperature  float64 `json:"apparentTemperature"`
+	CloudCover           float64 `json:"cloudCover"`
+	DewPoint             float64 `json:"dewPoint"`
+	Humidity             float64 `json:"humidity"`
+	Icon                 string  `json:"icon"`
+	NearestStormBearing  float64 `json:"nearestStormBearing"`
+	NearestStormDistance float64 `json:"nearestStormDistance"`
+	Ozone                float64 `json:"ozone"`
+	PrecipIntensity      float64 `json:"precipIntensity"`
+	PrecipProbability    float64 `json:"precipProbability"`
+	Pressure             float64 `json:"pressure"`
+	Summary              string  `json:"summary"`
+	Temperature          float64 `json:"temperature"`
+	Time                 *Time   `json:"time"`
+	UVIndex              float64 `json:"uvIndex"`
+	Visibility           float64 `json:"visibility"`
+	WindBearing          float64 `json:"windBearing"`
+	WindGust             float64 `json:"windGust"`
+	WindSpeed            float64 `json:"windSpeed"`
 }
 
 // DailyData are daily forecast data.
 type DailyData struct {
-	ApparentTemperatureHigh     float64 `json:"apparentTemperatureHigh,omitempty"`
-	ApparentTemperatureHighTime *Time   `json:"apparentTemperatureHighTime,omitempty"`
-	ApparentTemperatureLow      float64 `json:"apparentTemperatureLow,omitempty"`
-	ApparentTemperatureLowTime  *Time   `json:"apparentTemperatureLowTime,omitempty"`
-	ApparentTemperatureMax      float64 `json:"apparentTemperatureMax,omitempty"`
-	ApparentTemperatureMaxTime  *Time   `json:"apparentTemperatureMaxTime,omitempty"`
-	ApparentTemperatureMin      float64 `json:"apparentTemperatureMin,omitempty"`
-	ApparentTemperatureMinTime  float64 `json:"apparentTemperatureMinTime,omitempty"`
-	CloudCover                  float64 `json:"cloudCover,omitempty"`
-	DewPoint                    float64 `json:"dewPoint,omitempty"`
-	Humidity                    float64 `json:"humidity,omitempty"`
-	Icon                        string  `json:"icon,omitempty"`
-	MoonPhase                   float64 `json:"moonPhase,omitempty"`
-	Ozone                       float64 `json:"ozone,omitempty"`
-	PrecipIntensity             float64 `json:"precipIntensity,omitempty"`
-	PrecipIntensityMax          float64 `json:"precipIntensityMax,omitempty"`
-	PrecipIntensityMaxTime      *Time   `json:"precipIntensityMaxTime,omitempty"`
-	PrecipProbability           float64 `json:"precipProbability,omitempty"`
-	PrecipType                  string  `json:"precipType,omitempty"`
-	Pressure                    float64 `json:"pressure,omitempty"`
-	Summary                     string  `json:"summary,omitempty"`
-	SunriseTime                 *Time   `json:"sunriseTime,omitempty"`
-	SunsetTime                  *Time   `json:"sunsetTime,omitempty"`
-	TemperatureHigh             float64 `json:"temperatureHigh,omitempty"`
-	TemperatureHighTime         *Time   `json:"temperatureHighTime,omitempty"`
-	TemperatureLow              float64 `json:"temperatureLow,omitempty"`
-	TemperatureLowTime          *Time   `json:"temperatureLowTime,omitempty"`
-	TemperatureMax              float64 `json:"temperatureMax,omitempty"`
-	TemperatureMaxTime          *Time   `json:"temperatureMaxTime,omitempty"`
-	TemperatureMin              float64 `json:"temperatureMin,omitempty"`
-	TemperatureMinTime          *Time   `json:"temperatureMinTime,omitempty"`
-	Time                        *Time   `json:"time,omitempty"`
-	UVIndex                     float64 `json:"uvIndex,omitempty"`
-	UVIndexTime                 *Time   `json:"uvIndexTime,omitempty"`
-	Visibility                  float64 `json:"visibility,omitempty"`
-	WindBearing                 float64 `json:"windBearing,omitempty"`
-	WindGust                    float64 `json:"windGust,omitempty"`
-	WindGustTime                *Time   `json:"windGustTime,omitempty"`
-	WindSpeed                   float64 `json:"windSpeed,omitempty"`
+	ApparentTemperatureHigh     float64 `json:"apparentTemperatureHigh"`
+	ApparentTemperatureHighTime *Time   `json:"apparentTemperatureHighTime"`
+	ApparentTemperatureLow      float64 `json:"apparentTemperatureLow"`
+	ApparentTemperatureLowTime  *Time   `json:"apparentTemperatureLowTime"`
+	ApparentTemperatureMax      float64 `json:"apparentTemperatureMax"`
+	ApparentTemperatureMaxTime  *Time   `json:"apparentTemperatureMaxTime"`
+	ApparentTemperatureMin      float64 `json:"apparentTemperatureMin"`
+	ApparentTemperatureMinTime  float64 `json:"apparentTemperatureMinTime"`
+	CloudCover                  float64 `json:"cloudCover"`
+	DewPoint                    float64 `json:"dewPoint"`
+	Humidity                    float64 `json:"humidity"`
+	Icon                        string  `json:"icon"`
+	MoonPhase                   float64 `json:"moonPhase"`
+	Ozone                       float64 `json:"ozone"`
+	PrecipIntensity             float64 `json:"precipIntensity"`
+	PrecipIntensityMax          float64 `json:"precipIntensityMax"`
+	PrecipIntensityMaxTime      *Time   `json:"precipIntensityMaxTime"`
+	PrecipProbability           float64 `json:"precipProbability"`
+	PrecipType                  string  `json:"precipType"`
+	Pressure                    float64 `json:"pressure"`
+	Summary                     string  `json:"summary"`
+	SunriseTime                 *Time   `json:"sunriseTime"`
+	SunsetTime                  *Time   `json:"sunsetTime"`
+	TemperatureHigh             float64 `json:"temperatureHigh"`
+	TemperatureHighTime         *Time   `json:"temperatureHighTime"`
+	TemperatureLow              float64 `json:"temperatureLow"`
+	TemperatureLowTime          *Time   `json:"temperatureLowTime"`
+	TemperatureMax              float64 `json:"temperatureMax"`
+	TemperatureMaxTime          *Time   `json:"temperatureMaxTime"`
+	TemperatureMin              float64 `json:"temperatureMin"`
+	TemperatureMinTime          *Time   `json:"temperatureMinTime"`
+	Time                        *Time   `json:"time"`
+	UVIndex                     float64 `json:"uvIndex"`
+	UVIndexTime                 *Time   `json:"uvIndexTime"`
+	Visibility                  float64 `json:"visibility"`
+	WindBearing                 float64 `json:"windBearing"`
+	WindGust                    float64 `json:"windGust"`
+	WindGustTime                *Time   `json:"windGustTime"`
+	WindSpeed                   float64 `json:"windSpeed"`
 }
 
 // A Daily is a daily forecast.
 type Daily struct {
-	Data    []*DailyData `json:"data,omitempty"`
-	Icon    string       `json:"icon,omitempty"`
-	Summary string       `json:"summary,omitempty"`
+	Data    []*DailyData `json:"data"`
+	Icon    string       `json:"icon"`
+	Summary string       `json:"summary"`
 }
 
 // Flags are forecast flags.
 type Flags struct {
-	DarkSkyUnavailable interface{} `json:"darksky-unavailable,omitempty"`
-	NearestStation     float64     `json:"nearest-station,omitempty"`
-	Sources            []string    `json:"sources,omitempty"`
-	Units              Units       `json:"units,omitempty"`
+	DarkSkyUnavailable interface{} `json:"darksky-unavailable"`
+	NearestStation     float64     `json:"nearest-station"`
+	Sources            []string    `json:"sources"`
+	Units              Units       `json:"units"`
 }
 
 // HourlyData are hourly forecast data.
 type HourlyData struct {
-	ApparentTemperature float64 `json:"apparentTemperature,omitempty"`
-	CloudCover          float64 `json:"cloudCover,omitempty"`
-	DewPoint            float64 `json:"dewPoint,omitempty"`
-	Humidity            float64 `json:"humidity,omitempty"`
-	Icon                string  `json:"icon,omitempty"`
-	Ozone               float64 `json:"ozone,omitempty"`
-	PrecipIntensity     float64 `json:"precipIntensity,omitempty"`
-	PrecipProbability   float64 `json:"precipProbability,omitempty"`
-	PrecipType          string  `json:"precipType,omitempty"`
-	Pressure            float64 `json:"pressure,omitempty"`
-	Summary             string  `json:"summary,omitempty"`
-	Temperature         float64 `json:"temperature,omitempty"`
-	Time                *Time   `json:"time,omitempty"`
-	UVIndex             float64 `json:"uvIndex,omitempty"`
-	Visibility          float64 `json:"visibility,omitempty"`
-	WindBearing         float64 `json:"windBearing,omitempty"`
-	WindGust            float64 `json:"windGust,omitempty"`
-	WindSpeed           float64 `json:"windSpeed,omitempty"`
+	ApparentTemperature float64 `json:"apparentTemperature"`
+	CloudCover          float64 `json:"cloudCover"`
+	DewPoint            float64 `json:"dewPoint"`
+	Humidity            float64 `json:"humidity"`
+	Icon                string  `json:"icon"`
+	Ozone               float64 `json:"ozone"`
+	PrecipIntensity     float64 `json:"precipIntensity"`
+	PrecipProbability   float64 `json:"precipProbability"`
+	PrecipType          string  `json:"precipType"`
+	Pressure            float64 `json:"pressure"`
+	Summary             string  `json:"summary"`
+	Temperature         float64 `json:"temperature"`
+	Time                *Time   `json:"time"`
+	UVIndex             float64 `json:"uvIndex"`
+	Visibility          float64 `json:"visibility"`
+	WindBearing         float64 `json:"windBearing"`
+	WindGust            float64 `json:"windGust"`
+	WindSpeed           float64 `json:"windSpeed"`
 }
 
 // An Hourly is an hourly forecast.
 type Hourly struct {
-	Data    []*HourlyData `json:"data,omitempty"`
-	Icon    string        `json:"icon,omitempty"`
-	Summary string        `json:"summary,omitempty"`
+	Data    []*HourlyData `json:"data"`
+	Icon    string        `json:"icon"`
+	Summary string        `json:"summary"`
 }
 
 // MinutelyData are minutely forecast data.
 type MinutelyData struct {
-	PrecipIntensity      float64 `json:"precipIntensity,omitempty"`
-	PrecipIntensityError float64 `json:"precipIntensityError,omitempty"`
-	PrecipProbability    float64 `json:"precipProbability,omitempty"`
-	PrecipType           string  `json:"precipType,omitempty"`
-	Time                 *Time   `json:"time,omitempty"`
+	PrecipIntensity      float64 `json:"precipIntensity"`
+	PrecipIntensityError float64 `json:"precipIntensityError"`
+	PrecipProbability    float64 `json:"precipProbability"`
+	PrecipType           string  `json:"precipType"`
+	Time                 *Time   `json:"time"`
 }
 
 // A Minutely is a minutely forecast.
 type Minutely struct {
-	Data    []*MinutelyData `json:"data,omitempty"`
-	Icon    string          `json:"icon,omitempty"`
-	Summary string          `json:"summary,omitempty"`
+	Data    []*MinutelyData `json:"data"`
+	Icon    string          `json:"icon"`
+	Summary string          `json:"summary"`
 }
 
 // A Forecast is a forecast.
 type Forecast struct {
-	Alerts    []*Alert   `json:"alerts,omitempty"`
-	Currently *Currently `json:"currently,omitempty"`
-	Daily     *Daily     `json:"daily,omitempty"`
-	Flags     *Flags     `json:"flags,omitempty"`
-	Hourly    *Hourly    `json:"hourly,omitempty"`
-	Latitude  float64    `json:"latitude,omitempty"`
-	Longitude float64    `json:"longitude,omitempty"`
-	Minutely  *Minutely  `json:"minutely,omitempty"`
-	Offset    float64    `json:"offset,omitempty"`
-	Timezone  string     `json:"timezone,omitempty"`
+	Alerts    []*Alert   `json:"alerts"`
+	Currently *Currently `json:"currently"`
+	Daily     *Daily     `json:"daily"`
+	Flags     *Flags     `json:"flags"`
+	Hourly    *Hourly    `json:"hourly"`
+	Latitude  float64    `json:"latitude"`
+	Longitude float64    `json:"longitude"`
+	Minutely  *Minutely  `json:"minutely"`
+	Offset    float64    `json:"offset"`
+	Timezone  string     `json:"timezone"`
 }
 
 // Forecast returns the forecast for latitude and longitude at time t. If t is
