@@ -2,3 +2,9 @@ linters:
   enable-all: true
   disable:
     - lll
+
+issues:
+  exclude-rules:
+    - linters:
+        - scopelint
+      path: "_test\\.go"

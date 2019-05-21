@@ -96,7 +96,7 @@ func TestClientTimeMachine(t *testing.T) {
 	assert.Nil(t, forecast.Alerts)
 }
 
-func TestClientMetadatacallback(t *testing.T) {
+func TestClientMetadataCallback(t *testing.T) {
 	var lastResponseMetadata *ResponseMetadata
 	c := mustNewTestClient(t,
 		WithResponseMetadataCallback(func(rm *ResponseMetadata) {
@@ -109,6 +109,60 @@ func TestClientMetadatacallback(t *testing.T) {
 	assert.Equal(t, http.StatusOK, lastResponseMetadata.StatusCode)
 	assert.True(t, lastResponseMetadata.ForecastAPICalls > 0)
 	assert.True(t, lastResponseMetadata.ResponseTime > 0)
+}
+
+func TestClientInvalidURL(t *testing.T) {
+	c := NewClient(
+		WithBaseURL(""),
+		WithKey("%"),
+	)
+	_, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
+	assert.EqualError(t, err, "parse /forecast/%/42.360100,-71.058900: invalid URL escape \"%/4\"")
+}
+
+func TestClientRequestFail(t *testing.T) {
+	c := NewClient(
+		WithBaseURL("http://0.0.0.0"),
+		WithKey("key"),
+	)
+	_, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
+	assert.EqualError(t, err, "Get http://0.0.0.0/forecast/key/42.360100,-71.058900: dial tcp 0.0.0.0:80: connect: connection refused")
+}
+
+func TestTimeUnmarshalJSON(t *testing.T) {
+	for _, tc := range []struct {
+		name         string
+		data         []byte
+		expectedErr  string
+		expectedTime *Time
+	}{
+		{
+			name:         "zero",
+			data:         []byte("0"),
+			expectedTime: &Time{Time: time.Unix(0, 0)},
+		},
+		{
+			name:        "empty",
+			data:        []byte(""),
+			expectedErr: "unexpected end of JSON input",
+		},
+		{
+			name:        "string",
+			data:        []byte(`""`),
+			expectedErr: "json: cannot unmarshal string into Go value of type int64",
+		},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			time := &Time{}
+			err := time.UnmarshalJSON(tc.data)
+			if tc.expectedErr == "" {
+				assert.NoError(t, err)
+				assert.Equal(t, tc.expectedTime, time)
+			} else {
+				assert.EqualError(t, err, tc.expectedErr)
+			}
+		})
+	}
 }
 
 func mustNewTestClient(t *testing.T, options ...ClientOption) *Client {
