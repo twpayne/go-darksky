@@ -27,9 +27,9 @@ const (
 
 // An Error is an error.
 type Error struct {
-	Request      *http.Request  `json:"-"`
-	Response     *http.Response `json:"-"`
-	ResponseBody []byte         `json:"-"`
+	Request      *http.Request
+	Response     *http.Response
+	ResponseBody []byte
 	Details      struct {
 		Code     int    `json:"code"`
 		ErrorStr string `json:"error"`
