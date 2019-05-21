@@ -96,7 +96,7 @@ func TestClientTimeMachine(t *testing.T) {
 	assert.Nil(t, forecast.Alerts)
 }
 
-func TestClientMetadatacallback(t *testing.T) {
+func TestClientMetadataCallback(t *testing.T) {
 	var lastResponseMetadata *ResponseMetadata
 	c := mustNewTestClient(t,
 		WithResponseMetadataCallback(func(rm *ResponseMetadata) {
