@@ -7,6 +7,7 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -127,7 +128,9 @@ func (s *Server) handleForecast(w http.ResponseWriter, r *http.Request) {
 
 	query := r.URL.Query()
 	if exclude := query.Get("exclude"); exclude != "" {
-		request.Exclude = exclude
+		blocks := strings.Split(exclude, ",")
+		sort.Strings(blocks)
+		request.Exclude = strings.Join(blocks, ",")
 	}
 	if extend := query.Get("extend"); extend != "" {
 		request.Extend = darksky.Extend(extend)

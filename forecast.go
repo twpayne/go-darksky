@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -286,6 +287,7 @@ func (c *Client) Forecast(ctx context.Context, latitude, longitude float64, t *T
 			for i, block := range options.Exclude {
 				blockStrs[i] = string(block)
 			}
+			sort.Strings(blockStrs)
 			values.Set("exclude", strings.Join(blockStrs, ","))
 		}
 		if options.Extend != "" {
