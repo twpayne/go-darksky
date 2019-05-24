@@ -101,6 +101,25 @@ func TestServer(t *testing.T) {
 			},
 		},
 		{
+			name: "santamonica_exclude_out_of_order_si",
+			request: dstest.Request{
+				Latitude:  34.0219,
+				Longitude: -118.4814,
+				Exclude:   "minutely,flags,daily,currently,alerts",
+				Extend:    darksky.DefaultExtend,
+				Lang:      darksky.DefaultLang,
+				Units:     darksky.UnitsSI,
+			},
+			expectedStatusCode: http.StatusOK,
+			testForecast: func(t *testing.T, f *darksky.Forecast) {
+				assert.Nil(t, f.Alerts)
+				assert.Nil(t, f.Currently)
+				assert.Nil(t, f.Daily)
+				assert.Nil(t, f.Flags)
+				assert.Nil(t, f.Minutely)
+			},
+		},
+		{
 			name: "santamonica_fr",
 			request: dstest.Request{
 				Latitude:  34.0219,

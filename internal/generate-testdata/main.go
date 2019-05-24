@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"sort"
 	"strings"
 	"text/template"
 
@@ -65,6 +66,9 @@ func run() error {
 	}
 	q := u.Query()
 	if *exclude != "" {
+		blocks := strings.Split(*exclude, ",")
+		sort.Strings(blocks)
+		*exclude = strings.Join(blocks, ",")
 		q.Set("exclude", *exclude)
 	}
 	if *extend != "" {
