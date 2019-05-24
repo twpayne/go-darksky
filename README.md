@@ -12,6 +12,7 @@ API](https://darksky.net/dev).
 * Support for all Dark Sky API functionality.
 * Idomatic Go API, including support for `context` and Go modules.
 * Fully tested, including error conditions.
+* Mock client for offline testing.
 * Monitoring hooks.
 
 ## Example
@@ -47,7 +48,7 @@ Go library provides all of the following:
 
 * Correct use of types for latitude and longitude: `float64`s, not `string`s.
 * Correct use of types for times: `time.Time`s, not `string`s.
-* Support for [`context`](https://golang.org/pkg/context/).
+* Support for `context`.
 * Support for Go modules.
 * Rich handling of errors, including both bad requests generic HTTP errors.
 * Monitoring hooks.
