@@ -1,6 +1,8 @@
 // Package dstest implements a mock Dark Sky server for testing.
 package dstest
 
+// FIXME generate response bodies for errors
+
 import (
 	"errors"
 	"net/http"
@@ -28,7 +30,7 @@ type Request struct {
 	Latitude  float64
 	Longitude float64
 	Time      darksky.Time
-	Exclude   string
+	Exclude   string // A string, not a []darksky.Block so we can use Request as a map key.
 	Extend    darksky.Extend
 	Lang      darksky.Lang
 	Units     darksky.Units
