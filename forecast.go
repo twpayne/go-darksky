@@ -28,8 +28,11 @@ const (
 // An Extend is what can be extended.
 type Extend string
 
-// ExtendHourly extends the forecast hourly.
-const ExtendHourly = "hourly"
+// Extends.
+const (
+	ExtendHourly = "hourly"
+	ExtendNone   = ""
+)
 
 // A Lang is a language.
 type Lang string
@@ -118,8 +121,8 @@ type ForecastOptions struct {
 
 // An Alert is an alert.
 type Alert struct {
-	Description int64    `json:"description"`
-	Expires     int64    `json:"expires"`
+	Description string   `json:"description"`
+	Expires     *Time    `json:"expires"`
 	Regions     []string `json:"regions"`
 	Severity    string   `json:"severity"`
 	Time        *Time    `json:"time"`

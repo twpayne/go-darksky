@@ -8,3 +8,6 @@ issues:
     - linters:
         - scopelint
       path: "_test\\.go"
+    - linters:
+        - gochecknoglobals
+      path: internal/generate-testdata
