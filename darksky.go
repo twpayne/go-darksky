@@ -18,6 +18,9 @@ const (
 	// DefaultBaseURL is the default base URL.
 	DefaultBaseURL = "https://api.darksky.net"
 
+	// DefaultExtend is the default extend.
+	DefaultExtend = ExtendNone
+
 	// DefaultLang is the default lang.
 	DefaultLang = LangEN
 
