@@ -123,7 +123,7 @@ func (s *Server) handleForecast(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-		request.Time.Time = time.Unix(int64(timeVal), 0)
+		request.Time.Time = time.Unix(int64(timeVal), 0).UTC()
 	}
 
 	query := r.URL.Query()
