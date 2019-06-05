@@ -13,7 +13,7 @@ func init() {
 		Latitude:  34.0219,
 		Longitude: -118.4814,
 		Time: darksky.Time{
-			Time: time.Unix(1556668800, 0),
+			Time: time.Date(2019, 5, 1, 0, 0, 0, 0, time.UTC),
 		},
 		Exclude: "",
 		Extend:  darksky.Extend(""),
