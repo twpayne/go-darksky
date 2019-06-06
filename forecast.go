@@ -182,6 +182,16 @@ const (
 	IconWind              Icon = "wind"
 )
 
+// A PrecipType is a type of precipitation.
+type PrecipType string
+
+// Precipitation types.
+const (
+	PrecipTypeRain  PrecipType = "rain"
+	PrecipTypeSleet PrecipType = "sleet"
+	PrecipTypeSnow  PrecipType = "snow"
+)
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -231,45 +241,45 @@ type Currently struct {
 
 // DailyData are daily forecast data.
 type DailyData struct {
-	ApparentTemperatureHigh     float64 `json:"apparentTemperatureHigh"`
-	ApparentTemperatureHighTime *Time   `json:"apparentTemperatureHighTime"`
-	ApparentTemperatureLow      float64 `json:"apparentTemperatureLow"`
-	ApparentTemperatureLowTime  *Time   `json:"apparentTemperatureLowTime"`
-	ApparentTemperatureMax      float64 `json:"apparentTemperatureMax"`
-	ApparentTemperatureMaxTime  *Time   `json:"apparentTemperatureMaxTime"`
-	ApparentTemperatureMin      float64 `json:"apparentTemperatureMin"`
-	ApparentTemperatureMinTime  float64 `json:"apparentTemperatureMinTime"`
-	CloudCover                  float64 `json:"cloudCover"`
-	DewPoint                    float64 `json:"dewPoint"`
-	Humidity                    float64 `json:"humidity"`
-	Icon                        Icon    `json:"icon"`
-	MoonPhase                   float64 `json:"moonPhase"`
-	Ozone                       float64 `json:"ozone"`
-	PrecipIntensity             float64 `json:"precipIntensity"`
-	PrecipIntensityMax          float64 `json:"precipIntensityMax"`
-	PrecipIntensityMaxTime      *Time   `json:"precipIntensityMaxTime"`
-	PrecipProbability           float64 `json:"precipProbability"`
-	PrecipType                  string  `json:"precipType"`
-	Pressure                    float64 `json:"pressure"`
-	Summary                     string  `json:"summary"`
-	SunriseTime                 *Time   `json:"sunriseTime"`
-	SunsetTime                  *Time   `json:"sunsetTime"`
-	TemperatureHigh             float64 `json:"temperatureHigh"`
-	TemperatureHighTime         *Time   `json:"temperatureHighTime"`
-	TemperatureLow              float64 `json:"temperatureLow"`
-	TemperatureLowTime          *Time   `json:"temperatureLowTime"`
-	TemperatureMax              float64 `json:"temperatureMax"`
-	TemperatureMaxTime          *Time   `json:"temperatureMaxTime"`
-	TemperatureMin              float64 `json:"temperatureMin"`
-	TemperatureMinTime          *Time   `json:"temperatureMinTime"`
-	Time                        *Time   `json:"time"`
-	UVIndex                     float64 `json:"uvIndex"`
-	UVIndexTime                 *Time   `json:"uvIndexTime"`
-	Visibility                  float64 `json:"visibility"`
-	WindBearing                 float64 `json:"windBearing"`
-	WindGust                    float64 `json:"windGust"`
-	WindGustTime                *Time   `json:"windGustTime"`
-	WindSpeed                   float64 `json:"windSpeed"`
+	ApparentTemperatureHigh     float64    `json:"apparentTemperatureHigh"`
+	ApparentTemperatureHighTime *Time      `json:"apparentTemperatureHighTime"`
+	ApparentTemperatureLow      float64    `json:"apparentTemperatureLow"`
+	ApparentTemperatureLowTime  *Time      `json:"apparentTemperatureLowTime"`
+	ApparentTemperatureMax      float64    `json:"apparentTemperatureMax"`
+	ApparentTemperatureMaxTime  *Time      `json:"apparentTemperatureMaxTime"`
+	ApparentTemperatureMin      float64    `json:"apparentTemperatureMin"`
+	ApparentTemperatureMinTime  float64    `json:"apparentTemperatureMinTime"`
+	CloudCover                  float64    `json:"cloudCover"`
+	DewPoint                    float64    `json:"dewPoint"`
+	Humidity                    float64    `json:"humidity"`
+	Icon                        Icon       `json:"icon"`
+	MoonPhase                   float64    `json:"moonPhase"`
+	Ozone                       float64    `json:"ozone"`
+	PrecipIntensity             float64    `json:"precipIntensity"`
+	PrecipIntensityMax          float64    `json:"precipIntensityMax"`
+	PrecipIntensityMaxTime      *Time      `json:"precipIntensityMaxTime"`
+	PrecipProbability           float64    `json:"precipProbability"`
+	PrecipType                  PrecipType `json:"precipType"`
+	Pressure                    float64    `json:"pressure"`
+	Summary                     string     `json:"summary"`
+	SunriseTime                 *Time      `json:"sunriseTime"`
+	SunsetTime                  *Time      `json:"sunsetTime"`
+	TemperatureHigh             float64    `json:"temperatureHigh"`
+	TemperatureHighTime         *Time      `json:"temperatureHighTime"`
+	TemperatureLow              float64    `json:"temperatureLow"`
+	TemperatureLowTime          *Time      `json:"temperatureLowTime"`
+	TemperatureMax              float64    `json:"temperatureMax"`
+	TemperatureMaxTime          *Time      `json:"temperatureMaxTime"`
+	TemperatureMin              float64    `json:"temperatureMin"`
+	TemperatureMinTime          *Time      `json:"temperatureMinTime"`
+	Time                        *Time      `json:"time"`
+	UVIndex                     float64    `json:"uvIndex"`
+	UVIndexTime                 *Time      `json:"uvIndexTime"`
+	Visibility                  float64    `json:"visibility"`
+	WindBearing                 float64    `json:"windBearing"`
+	WindGust                    float64    `json:"windGust"`
+	WindGustTime                *Time      `json:"windGustTime"`
+	WindSpeed                   float64    `json:"windSpeed"`
 }
 
 // A Daily is a daily forecast.
@@ -289,24 +299,24 @@ type Flags struct {
 
 // HourlyData are hourly forecast data.
 type HourlyData struct {
-	ApparentTemperature float64 `json:"apparentTemperature"`
-	CloudCover          float64 `json:"cloudCover"`
-	DewPoint            float64 `json:"dewPoint"`
-	Humidity            float64 `json:"humidity"`
-	Icon                Icon    `json:"icon"`
-	Ozone               float64 `json:"ozone"`
-	PrecipIntensity     float64 `json:"precipIntensity"`
-	PrecipProbability   float64 `json:"precipProbability"`
-	PrecipType          string  `json:"precipType"`
-	Pressure            float64 `json:"pressure"`
-	Summary             string  `json:"summary"`
-	Temperature         float64 `json:"temperature"`
-	Time                *Time   `json:"time"`
-	UVIndex             float64 `json:"uvIndex"`
-	Visibility          float64 `json:"visibility"`
-	WindBearing         float64 `json:"windBearing"`
-	WindGust            float64 `json:"windGust"`
-	WindSpeed           float64 `json:"windSpeed"`
+	ApparentTemperature float64    `json:"apparentTemperature"`
+	CloudCover          float64    `json:"cloudCover"`
+	DewPoint            float64    `json:"dewPoint"`
+	Humidity            float64    `json:"humidity"`
+	Icon                Icon       `json:"icon"`
+	Ozone               float64    `json:"ozone"`
+	PrecipIntensity     float64    `json:"precipIntensity"`
+	PrecipProbability   float64    `json:"precipProbability"`
+	PrecipType          PrecipType `json:"precipType"`
+	Pressure            float64    `json:"pressure"`
+	Summary             string     `json:"summary"`
+	Temperature         float64    `json:"temperature"`
+	Time                *Time      `json:"time"`
+	UVIndex             float64    `json:"uvIndex"`
+	Visibility          float64    `json:"visibility"`
+	WindBearing         float64    `json:"windBearing"`
+	WindGust            float64    `json:"windGust"`
+	WindSpeed           float64    `json:"windSpeed"`
 }
 
 // An Hourly is an hourly forecast.
@@ -318,11 +328,11 @@ type Hourly struct {
 
 // MinutelyData are minutely forecast data.
 type MinutelyData struct {
-	PrecipIntensity      float64 `json:"precipIntensity"`
-	PrecipIntensityError float64 `json:"precipIntensityError"`
-	PrecipProbability    float64 `json:"precipProbability"`
-	PrecipType           string  `json:"precipType"`
-	Time                 *Time   `json:"time"`
+	PrecipIntensity      float64    `json:"precipIntensity"`
+	PrecipIntensityError float64    `json:"precipIntensityError"`
+	PrecipProbability    float64    `json:"precipProbability"`
+	PrecipType           PrecipType `json:"precipType"`
+	Time                 *Time      `json:"time"`
 }
 
 // A Minutely is a minutely forecast.
