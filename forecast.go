@@ -165,6 +165,23 @@ const (
 	UnitsUS   Units = "us"
 )
 
+// An Icon is an icon.
+type Icon string
+
+// Icons.
+const (
+	IconClearDay          Icon = "clear-day"
+	IconClearNight        Icon = "clear-night"
+	IconCloudy            Icon = "cloudy"
+	IconFog               Icon = "fog"
+	IconPartlyCloudyDay   Icon = "partly-cloudy-day"
+	IconPartlyCloudyNight Icon = "partly-cloudy-night"
+	IconRain              Icon = "rain"
+	IconSleet             Icon = "sleet"
+	IconSnow              Icon = "snow"
+	IconWind              Icon = "wind"
+)
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -195,7 +212,7 @@ type Currently struct {
 	CloudCover           float64 `json:"cloudCover"`
 	DewPoint             float64 `json:"dewPoint"`
 	Humidity             float64 `json:"humidity"`
-	Icon                 string  `json:"icon"`
+	Icon                 Icon    `json:"icon"`
 	NearestStormBearing  float64 `json:"nearestStormBearing"`
 	NearestStormDistance float64 `json:"nearestStormDistance"`
 	Ozone                float64 `json:"ozone"`
@@ -225,7 +242,7 @@ type DailyData struct {
 	CloudCover                  float64 `json:"cloudCover"`
 	DewPoint                    float64 `json:"dewPoint"`
 	Humidity                    float64 `json:"humidity"`
-	Icon                        string  `json:"icon"`
+	Icon                        Icon    `json:"icon"`
 	MoonPhase                   float64 `json:"moonPhase"`
 	Ozone                       float64 `json:"ozone"`
 	PrecipIntensity             float64 `json:"precipIntensity"`
@@ -258,7 +275,7 @@ type DailyData struct {
 // A Daily is a daily forecast.
 type Daily struct {
 	Data    []*DailyData `json:"data"`
-	Icon    string       `json:"icon"`
+	Icon    Icon         `json:"icon"`
 	Summary string       `json:"summary"`
 }
 
@@ -276,7 +293,7 @@ type HourlyData struct {
 	CloudCover          float64 `json:"cloudCover"`
 	DewPoint            float64 `json:"dewPoint"`
 	Humidity            float64 `json:"humidity"`
-	Icon                string  `json:"icon"`
+	Icon                Icon    `json:"icon"`
 	Ozone               float64 `json:"ozone"`
 	PrecipIntensity     float64 `json:"precipIntensity"`
 	PrecipProbability   float64 `json:"precipProbability"`
@@ -295,7 +312,7 @@ type HourlyData struct {
 // An Hourly is an hourly forecast.
 type Hourly struct {
 	Data    []*HourlyData `json:"data"`
-	Icon    string        `json:"icon"`
+	Icon    Icon          `json:"icon"`
 	Summary string        `json:"summary"`
 }
 
@@ -311,7 +328,7 @@ type MinutelyData struct {
 // A Minutely is a minutely forecast.
 type Minutely struct {
 	Data    []*MinutelyData `json:"data"`
-	Icon    string          `json:"icon"`
+	Icon    Icon            `json:"icon"`
 	Summary string          `json:"summary"`
 }
 
