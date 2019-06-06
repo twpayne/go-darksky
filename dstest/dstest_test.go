@@ -138,7 +138,8 @@ func TestServer(t *testing.T) {
 			s := dstest.NewServer(
 				dstest.WithDefaultForecasts(),
 			)
-			c := s.NewClient()
+			c, err := s.NewClient()
+			require.NoError(t, err)
 			f, err := c.Forecast(context.Background(), tc.request.Latitude, tc.request.Longitude, &tc.request.Time, tc.request.Options())
 			if tc.expectedStatusCode != http.StatusOK {
 				assert.Error(t, err)

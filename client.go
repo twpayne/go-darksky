@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	"golang.org/x/text/language"
 )
 
 const (
@@ -54,18 +56,13 @@ type Client struct {
 	httpClient               *http.Client
 	baseURL                  string
 	key                      string
+	langs                    []Lang
 	responseMetadataCallback ResponseMetadataCallback
+	matcher                  language.Matcher
 }
 
 // A ClientOption sets an option on a Client.
 type ClientOption func(*Client)
-
-// WithHTTPClient sets the HTTP Client.
-func WithHTTPClient(httpClient *http.Client) ClientOption {
-	return func(c *Client) {
-		c.httpClient = httpClient
-	}
-}
 
 // WithBaseURL sets the base URL.
 func WithBaseURL(baseURL string) ClientOption {
@@ -74,10 +71,25 @@ func WithBaseURL(baseURL string) ClientOption {
 	}
 }
 
+// WithHTTPClient sets the HTTP Client.
+func WithHTTPClient(httpClient *http.Client) ClientOption {
+	return func(c *Client) {
+		c.httpClient = httpClient
+	}
+}
+
 // WithKey sets the key.
 func WithKey(key string) ClientOption {
 	return func(c *Client) {
 		c.key = key
+	}
+}
+
+// WithLangs sets the supported languages. The first element is used as the
+// fallback.
+func WithLangs(langs []Lang) ClientOption {
+	return func(c *Client) {
+		c.langs = langs
 	}
 }
 
@@ -89,15 +101,34 @@ func WithResponseMetadataCallback(rmc ResponseMetadataCallback) ClientOption {
 }
 
 // NewClient returns a new Client.
-func NewClient(options ...ClientOption) *Client {
+func NewClient(options ...ClientOption) (*Client, error) {
 	c := &Client{
 		httpClient: http.DefaultClient,
 		baseURL:    DefaultBaseURL,
+		langs:      append([]Lang{DefaultLang}, Langs...),
 	}
 	for _, o := range options {
 		o(c)
 	}
-	return c
+	tags := make([]language.Tag, len(c.langs))
+	for i, lang := range c.langs {
+		tag, err := language.Parse(string(lang))
+		if err != nil {
+			return nil, err
+		}
+		tags[i] = tag
+	}
+	c.matcher = language.NewMatcher(tags)
+	return c, nil
+}
+
+// MatchLang parses and matches the given strings until one of them matches a
+// supported language. A string may be an Accept-Language header as handled by
+// golang.org/x/text/language.ParseAcceptLanguage. The default language is
+// returned if no other language matches.
+func (c *Client) MatchLang(strings ...string) Lang {
+	_, index := language.MatchStrings(c.matcher, strings...)
+	return c.langs[index]
 }
 
 func (e *Error) Error() string {

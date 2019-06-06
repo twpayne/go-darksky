@@ -11,6 +11,7 @@ API](https://darksky.net/dev).
 
 * Support for all Dark Sky API functionality.
 * Idomatic Go API, including support for `context` and Go modules.
+* Language matching.
 * Fully tested, including error conditions.
 * Mock client for offline testing.
 * Monitoring hooks.

@@ -38,12 +38,13 @@ func TestClientInternalServerError(t *testing.T) {
 		w.WriteHeader(http.StatusInternalServerError)
 		_, _ = w.Write([]byte("response body"))
 	}))
-	c := NewClient(
+	c, err := NewClient(
 		WithBaseURL(s.URL),
 		WithHTTPClient(s.Client()),
 		WithKey("key"),
 	)
-	_, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
+	require.NoError(t, err)
+	_, err = c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
 	require.Error(t, err)
 	e, ok := err.(*Error)
 	require.True(t, ok)
@@ -112,20 +113,22 @@ func TestClientMetadataCallback(t *testing.T) {
 }
 
 func TestClientInvalidURL(t *testing.T) {
-	c := NewClient(
+	c, err := NewClient(
 		WithBaseURL(""),
 		WithKey("%"),
 	)
-	_, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
+	require.NoError(t, err)
+	_, err = c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
 	assert.EqualError(t, err, "parse /forecast/%/42.360100,-71.058900: invalid URL escape \"%/4\"")
 }
 
 func TestClientRequestFail(t *testing.T) {
-	c := NewClient(
+	c, err := NewClient(
 		WithBaseURL("http://0.0.0.0"),
 		WithKey("key"),
 	)
-	_, err := c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
+	require.NoError(t, err)
+	_, err = c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
 	assert.EqualError(t, err, "Get http://0.0.0.0/forecast/key/42.360100,-71.058900: dial tcp 0.0.0.0:80: connect: connection refused")
 }
 
@@ -170,5 +173,7 @@ func mustNewTestClient(t *testing.T, options ...ClientOption) *Client {
 	if key == "" {
 		t.Fatal("DARKSKY_KEY environment variable not set")
 	}
-	return NewClient(append([]ClientOption{WithKey(key)}, options...)...)
+	c, err := NewClient(append([]ClientOption{WithKey(key)}, options...)...)
+	require.NoError(t, err)
+	return c
 }
