@@ -38,7 +38,7 @@ const (
 // A Lang is a language.
 type Lang string
 
-// Langs.
+// Supported languages.
 const (
 	LangAR        Lang = "ar"          // Arabic
 	LangAZ        Lang = "az"          // Azerbaijani
@@ -94,6 +94,64 @@ const (
 	LangZH        Lang = "zh"          // simplified Chinese
 	LangZHTW      Lang = "zh-tw"       // traditional ChineLang
 )
+
+// Langs is a slice of all supported languages.
+//nolint: gochecknoglobals
+var Langs = []Lang{
+	LangAR,
+	LangAZ,
+	LangBE,
+	LangBG,
+	LangBN,
+	LangBS,
+	LangCA,
+	LangCS,
+	LangDA,
+	LangDE,
+	LangEL,
+	LangEN,
+	LangEO,
+	LangES,
+	LangET,
+	LangFI,
+	LangFR,
+	LangHE,
+	LangHI,
+	LangHR,
+	LangHU,
+	LangID,
+	LangIS,
+	LangIT,
+	LangJA,
+	LangKA,
+	LangKN,
+	LangKO,
+	LangKW,
+	LangLV,
+	LangML,
+	LangMR,
+	LangNB,
+	LangNL,
+	LangNO,
+	LangPA,
+	LangPL,
+	LangPT,
+	LangRO,
+	LangRU,
+	LangSK,
+	LangSL,
+	LangSR,
+	LangSV,
+	LangTA,
+	LangTE,
+	LangTET,
+	LangTR,
+	LangUK,
+	LangUR,
+	LangXPigLatin,
+	LangZH,
+	LangZHTW,
+}
 
 // A Units is a system of units.
 type Units string
