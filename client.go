@@ -64,17 +64,17 @@ type Client struct {
 // A ClientOption sets an option on a Client.
 type ClientOption func(*Client)
 
-// WithHTTPClient sets the HTTP Client.
-func WithHTTPClient(httpClient *http.Client) ClientOption {
-	return func(c *Client) {
-		c.httpClient = httpClient
-	}
-}
-
 // WithBaseURL sets the base URL.
 func WithBaseURL(baseURL string) ClientOption {
 	return func(c *Client) {
 		c.baseURL = baseURL
+	}
+}
+
+// WithHTTPClient sets the HTTP Client.
+func WithHTTPClient(httpClient *http.Client) ClientOption {
+	return func(c *Client) {
+		c.httpClient = httpClient
 	}
 }
 
