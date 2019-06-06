@@ -192,6 +192,16 @@ const (
 	PrecipTypeSnow  PrecipType = "snow"
 )
 
+// A Severity is a severity.
+type Severity string
+
+// Severities.
+const (
+	SeverityAdvisory Severity = "advisory"
+	SeverityWatch    Severity = "watch"
+	SeverityWarning  Severity = "warning"
+)
+
 // A Time is a time that unmarshals from a UNIX timestamp.
 type Time struct {
 	time.Time
@@ -210,7 +220,7 @@ type Alert struct {
 	Description string   `json:"description"`
 	Expires     *Time    `json:"expires"`
 	Regions     []string `json:"regions"`
-	Severity    string   `json:"severity"`
+	Severity    Severity `json:"severity"`
 	Time        *Time    `json:"time"`
 	Title       string   `json:"title"`
 	URI         string   `json:"uri"`
