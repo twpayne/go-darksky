@@ -101,7 +101,7 @@ func WithResponseMetadataCallback(rmc ResponseMetadataCallback) ClientOption {
 }
 
 // NewClient returns a new Client.
-func NewClient(options ...ClientOption) *Client {
+func NewClient(options ...ClientOption) (*Client, error) {
 	c := &Client{
 		httpClient: http.DefaultClient,
 		baseURL:    DefaultBaseURL,
@@ -112,10 +112,14 @@ func NewClient(options ...ClientOption) *Client {
 	}
 	tags := make([]language.Tag, len(c.langs))
 	for i, lang := range c.langs {
-		tags[i] = language.MustParse(string(lang))
+		tag, err := language.Parse(string(lang))
+		if err != nil {
+			return nil, err
+		}
+		tags[i] = tag
 	}
 	c.matcher = language.NewMatcher(tags)
-	return c
+	return c, nil
 }
 
 // MatchLang parses and matches the given strings until one of them matches a

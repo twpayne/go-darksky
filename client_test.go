@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestClientMatchLang(t *testing.T) {
@@ -69,7 +70,8 @@ func TestClientMatchLang(t *testing.T) {
 		},
 	} {
 		t.Run(tc.lang, func(t *testing.T) {
-			c := NewClient(tc.options...)
+			c, err := NewClient(tc.options...)
+			require.NoError(t, err)
 			assert.Equal(t, tc.expected, c.MatchLang(tc.lang))
 		})
 	}

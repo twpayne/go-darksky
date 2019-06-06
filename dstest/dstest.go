@@ -84,7 +84,7 @@ func NewServer(options ...Option) *Server {
 }
 
 // NewClient returns a new darksky.Client that connects to s.
-func (s *Server) NewClient(options ...darksky.ClientOption) *darksky.Client {
+func (s *Server) NewClient(options ...darksky.ClientOption) (*darksky.Client, error) {
 	return darksky.NewClient(
 		append([]darksky.ClientOption{
 			darksky.WithBaseURL(s.URL),

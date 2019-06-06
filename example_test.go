@@ -10,9 +10,13 @@ import (
 )
 
 func ExampleClient_Forecast() {
-	c := darksky.NewClient(
+	c, err := darksky.NewClient(
 		darksky.WithKey(os.Getenv("DARKSKY_KEY")),
 	)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	ctx := context.Background()
 	forecast, err := c.Forecast(ctx, 42.3601, -71.0589, nil, nil)
@@ -36,9 +40,13 @@ func ExampleClient_Forecast() {
 }
 
 func ExampleClient_Forecast_minimal() {
-	c := darksky.NewClient(
+	c, err := darksky.NewClient(
 		darksky.WithKey(os.Getenv("DARKSKY_KEY")),
 	)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	ctx := context.Background()
 	forecast, err := c.Forecast(ctx, 42.3601, -71.0589, nil, &darksky.ForecastOptions{
@@ -57,9 +65,13 @@ func ExampleClient_Forecast_minimal() {
 }
 
 func ExampleClient_Forecast_timeMachine() {
-	c := darksky.NewClient(
+	c, err := darksky.NewClient(
 		darksky.WithKey(os.Getenv("DARKSKY_KEY")),
 	)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	ctx := context.Background()
 	t := &darksky.Time{
