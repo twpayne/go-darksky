@@ -92,7 +92,7 @@ func TestClientTimeMachine(t *testing.T) {
 	assert.Equal(t, UnitsUS, forecast.Flags.Units)
 	assert.Equal(t, darkSkyTime.Time, forecast.Currently.Time.Time.UTC())
 	assert.Nil(t, forecast.Minutely)
-	assert.Equal(t, 24, len(forecast.Hourly.Data))
+	assert.True(t, 24 <= len(forecast.Hourly.Data) && len(forecast.Hourly.Data) < 26)
 	assert.Equal(t, 1, len(forecast.Daily.Data))
 	assert.Nil(t, forecast.Alerts)
 }
