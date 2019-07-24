@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi"
-	darksky "github.com/twpayne/go-darksky"
+	darksky "github.com/trende-jp/go-darksky"
 )
 
 // DefaultKey is the default key.
