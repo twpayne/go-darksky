@@ -1,4 +1,4 @@
-module github.com/trende-jp/go-darksky
+module github.com/twpayne/go-darksky
 
 go 1.12
 
