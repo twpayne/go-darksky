@@ -456,3 +456,9 @@ func (t *Time) UnmarshalJSON(data []byte) error {
 	t.Time = time.Unix(sec, 0)
 	return nil
 }
+
+// MarshalJSON implements the json.Marshaler interface. The time is expected
+// to be a UNIX timestamp in seconds.
+func (t *Time) MarshalJSON() ([]byte, error) {
+	return json.Marshal(t.Unix())
+}
