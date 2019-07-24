@@ -5,7 +5,7 @@ package dstest
 import (
 	"time"
 
-	darksky "github.com/trende-jp/go-darksky"
+	darksky "github.com/twpayne/go-darksky"
 )
 
 func init() {

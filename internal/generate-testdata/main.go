@@ -11,7 +11,7 @@ import (
 	"strings"
 	"text/template"
 
-	darksky "github.com/trende-jp/go-darksky"
+	darksky "github.com/twpayne/go-darksky"
 )
 
 var (
@@ -32,7 +32,7 @@ package {{ .Package }}
 import (
 	"time"
 
-	darksky "github.com/trende-jp/go-darksky"
+	darksky "github.com/twpayne/go-darksky"
 )
 
 func init() {

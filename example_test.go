@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/trende-jp/go-darksky"
+	"github.com/twpayne/go-darksky"
 )
 
 func ExampleClient_Forecast() {

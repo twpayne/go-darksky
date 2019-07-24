@@ -8,8 +8,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	darksky "github.com/trende-jp/go-darksky"
-	"github.com/trende-jp/go-darksky/dstest"
+	darksky "github.com/twpayne/go-darksky"
+	"github.com/twpayne/go-darksky/dstest"
 )
 
 func TestServer(t *testing.T) {
