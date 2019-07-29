@@ -31,8 +31,8 @@ type Extend string
 
 // Extends.
 const (
-	ExtendHourly = "hourly"
-	ExtendNone   = ""
+	ExtendHourly Extend = "hourly"
+	ExtendNone   Extend = ""
 )
 
 // A Lang is a language.
