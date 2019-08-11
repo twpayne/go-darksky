@@ -85,5 +85,6 @@ func ExampleClient_Forecast_timeMachine() {
 
 	fmt.Println(forecast.Currently.Icon)
 
-	// Output: cloudy
+	// Output:
+	// cloudy
 }
