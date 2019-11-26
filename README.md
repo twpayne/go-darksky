@@ -34,11 +34,7 @@ func ExampleClient_Forecast() {
 		return
 	}
 
-	// The forecast varies from day to day. Print something stable.
-	fmt.Println(forecast.Timezone)
-
-	// Output:
-	// America/New_York
+	fmt.Println(forecast)
 }
 ```
 
