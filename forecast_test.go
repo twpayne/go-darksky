@@ -119,7 +119,8 @@ func TestClientInvalidURL(t *testing.T) {
 	)
 	require.NoError(t, err)
 	_, err = c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
-	assert.EqualError(t, err, "parse /forecast/%/42.360100,-71.058900: invalid URL escape \"%/4\"")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "invalid URL escape")
 }
 
 func TestClientRequestFail(t *testing.T) {
@@ -129,7 +130,8 @@ func TestClientRequestFail(t *testing.T) {
 	)
 	require.NoError(t, err)
 	_, err = c.Forecast(context.Background(), 42.3601, -71.0589, nil, nil)
-	assert.EqualError(t, err, "Get http://0.0.0.0/forecast/key/42.360100,-71.058900: dial tcp 0.0.0.0:80: connect: connection refused")
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "connection refused")
 }
 
 func TestTimeUnmarshalJSON(t *testing.T) {
