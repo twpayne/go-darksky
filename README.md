@@ -1,6 +1,6 @@
 # go-darksky
 
-[![GoDoc](https://godoc.org/github.com/twpayne/go-darksky?status.svg)](https://godoc.org/github.com/twpayne/go-darksky)
+[![PkgGoDev](https://pkg.go.dev/badge/twpayne/go-darksky)](https://pkg.go.dev/twpayne/go-darksky)
 [![Coverage Status](https://coveralls.io/repos/github/twpayne/go-darksky/badge.svg)](https://coveralls.io/github/twpayne/go-darksky)
 
 Package `darksky` implements a client for the [Dark Sky weather forecasting
